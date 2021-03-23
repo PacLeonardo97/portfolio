@@ -1,10 +1,27 @@
+import { useState } from 'react';
 import { TextField, Button } from "@material-ui/core";
+import axios from 'axios';
 
 const Home = () => {
-  const onSubmit = event => {
-    console.log(event)
-    event.preventDefault();
-    console.log('evennnt', event);
+  const [name, setName]= useState('');
+  const [email, setEmail]= useState('');
+  const [subject, setSubject]= useState('');
+  const [telephone, setTelephone]= useState('');
+  const [body, setBody]= useState('');
+  
+  const onSubmit = async e => {
+    e.preventDefault();
+
+    if(name && email && subject && telephone && body) {
+      try {
+       await axios.post('/api/contact', { name, email, subject, telephone, body})
+        
+      } catch (error) {
+        console.log('error =>>', error)
+      }
+    } else {
+      // alert('nada')
+    }
   };
 
   return (
@@ -13,10 +30,10 @@ const Home = () => {
       <form onSubmit={onSubmit} style={{ width: "650px", margin: '40px auto', textAlign: 'center' }}>
         <div style={{ marginBottom: "24px", display: "flex" }}>
           <div style={{ width: "50%", marginRight: "32px" }}>
-            <TextField fullWidth id="name" label="name" variant="outlined" />
+            <TextField onChange={e => setName(e.target.value)} fullWidth id="name" label="name" variant="outlined" />
           </div>
           <div style={{ width: "50%" }}>
-            <TextField fullWidth id="email" label="email" variant="outlined" />
+            <TextField onChange={e => setEmail(e.target.value)} fullWidth id="email" label="email" variant="outlined" />
           </div>
         </div>
         <div style={{ marginBottom: "24px", display: "flex" }}>
@@ -26,6 +43,7 @@ const Home = () => {
               id="Subject"
               label="Subject"
               variant="outlined"
+              onChange={e => setSubject(e.target.value)}
             />
           </div>
           <div style={{ width: "50%" }}>
@@ -34,6 +52,7 @@ const Home = () => {
               id="telephone"
               label="telephone"
               variant="outlined"
+              onChange={e => setTelephone(e.target.value)}
             />
           </div>
         </div>
@@ -45,6 +64,7 @@ const Home = () => {
             id="body"
             label="body"
             variant="outlined"
+            onChange={e => setBody(e.target.value)}
           />
         </div>
         <div style={{ width:' 50%', margin: '0 auto' }}>
