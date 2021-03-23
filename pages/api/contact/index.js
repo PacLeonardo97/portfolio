@@ -6,8 +6,10 @@ export default async (req, res) => {
     if(!name && !email && !subject && !telephone && !body) {
         return res.json({error: 'you must provide all body'})
     }
-    const transporter = await nodemailer.createTransport({
-        service: "gmail",
+    const transporter = nodemailer.createTransport({
+        host: 'smtp.gmail.com',
+        port: 465,
+        secure: true,
         auth: {
           user: process.env.AUTH_EMAIL,
           pass: process.env.AUTH_PASSWORD,
