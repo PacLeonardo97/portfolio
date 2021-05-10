@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { TextField, Button } from "@material-ui/core";
+import { Header, Slick } from '../components';
 import axios from 'axios';
 
 const Home = () => {
@@ -26,7 +27,9 @@ const Home = () => {
 
   return (
     <>
-      <div>Entre em contato</div>
+      <Header />
+      <Slick />
+
       <form onSubmit={onSubmit} style={{ width: "650px", margin: '40px auto', textAlign: 'center' }}>
         <div style={{ marginBottom: "24px", display: "flex" }}>
           <div style={{ width: "50%", marginRight: "32px" }}>
