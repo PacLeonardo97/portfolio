@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { TextField, Button } from "@mui/material";
+import { TextField, Button, Typography } from "@mui/material";
 import { Header, Slick } from "../components";
 import { useFormik } from "formik";
 import axios from "axios";
@@ -29,7 +28,38 @@ const Home = () => {
     <>
       <Header />
       <Slick />
-
+      <section
+        style={{
+          margin: "40px auto",
+          width: '75%',
+          justifyContent: "space-between",
+          display: "flex",
+        }}
+      >
+        <div
+          style={{
+            backgroundColor: "red",
+            padding: "16px",
+            borderRadius: "32px",
+            color: '#FFFFFF',
+            textAlign: 'center'
+          }}
+        >
+          <Typography>Educação</Typography>
+        </div>
+        <div
+          style={{
+            backgroundColor: "red",
+            width: "50%",
+            padding: "16px",
+            borderRadius: "32px",
+            color: '#FFFFFF',
+            textAlign: 'center'
+          }}
+        >
+          <Typography>Habilidades</Typography>
+        </div>
+      </section>
       <form
         onSubmit={formik.handleSubmit}
         style={{ width: "650px", margin: "40px auto", textAlign: "center" }}
